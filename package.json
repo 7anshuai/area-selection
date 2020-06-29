@@ -1,15 +1,19 @@
 {
   "name": "area-selection-js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple and easy area selection library for image/video cropping",
   "homepage": "https://github.com/7anshuai/area-selection",
   "repository": "7anshuai/area-selection",
   "author": "Tan Shuai <7anshuai@gmail.com>",
   "license": "MIT",
-  "keywords": [],
-  "main": "area-selection.js",
-  "jsnext:main": "area-selection.es.js",
-  "types": "index.d.ts",
+  "keywords": [
+    "area-selection",
+    "image-crop",
+    "video-crop"
+  ],
+  "main": "dist/area-selection.js",
+  "jsnext:main": "dist/area-selection.es.js",
+  "types": "types/index.d.ts",
   "babel": {
     "presets": [
       "@babel/preset-env"
@@ -55,7 +59,7 @@
     "test:watch": "mocha --require @babel/register --reporter min --watch",
     "test:cover": "nyc npm test",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "build": "node tools/build && cp src/area-selection.css dist/area-selection.css",
+    "build": "node tools/build",
     "prepublish": "npm run build",
     "publish:docs": "easystatic deploy docs --repo 7anshuai/area-selection",
     "start": "easystatic start docs"

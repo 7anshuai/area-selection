@@ -25,7 +25,7 @@ promise = promise.then(() => del(['dist/*']));
 // Compile source code into a distributable format with Babel
 ['es', 'cjs', 'umd'].forEach((format) => {
   promise = promise.then(() => rollup.rollup({
-    input: 'src/area-selection.js',
+    input: 'src/index.js',
     external: Object.keys(pkg.dependencies),
     plugins: [
       resolve(),
@@ -46,16 +46,9 @@ promise = promise.then(() => del(['dist/*']));
   }));
 });
 
-// Copy package.json and LICENSE.txt
+// Copy files
 promise = promise.then(() => {
-  delete pkg.private;
-  delete pkg.devDependencies;
-  delete pkg.scripts;
-  delete pkg.eslintConfig;
-  delete pkg.babel;
-  fs.writeFileSync('dist/package.json', JSON.stringify(pkg, null, '  '), 'utf-8');
-  fs.writeFileSync('dist/index.d.ts', fs.readFileSync('types/index.d.ts', 'utf-8'), 'utf-8');
-  fs.writeFileSync('dist/LICENSE', fs.readFileSync('LICENSE', 'utf-8'), 'utf-8');
+  fs.writeFileSync('dist/area-selection.css', fs.readFileSync('src/area-selection.css', 'utf-8'), 'utf-8');
 });
 
 promise.catch(err => console.error(err.stack)); // eslint-disable-line no-console

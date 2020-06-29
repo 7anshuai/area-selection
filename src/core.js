@@ -21,7 +21,7 @@ const HANDLES = [
   { position: [0.5, 1.0], constraints: [0, 0, 1, 0], direction: 's' },
   { position: [0.0, 1.0], constraints: [0, 0, 1, 1], direction: 'sw' },
   { position: [0.0, 0.5], constraints: [0, 0, 0, 1], direction: 'w' }
-]
+];
 
 /**
  * Core class for AreaSelection containing most of its functional logic.
@@ -102,6 +102,18 @@ export default class Core {
     // Create overlay element
     this.overlayEl = document.createElement('div');
     this.overlayEl.className = 'area-selection-overlay';
+
+    // Create dashed lines
+    ['h', 'v'].forEach((item) => {
+      const dashedLine = document.createElement('div');
+      dashedLine.className = `area-selection-dashed area-selection-dashed-${item}`;
+      this.regionEl.appendChild(dashedLine);
+    });
+
+    // Create center crosshair
+    const center = document.createElement('div');
+    center.className = 'area-selection-center';
+    this.regionEl.appendChild(center);
 
     // Create handles element
     this.handles = [];
